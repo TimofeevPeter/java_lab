@@ -1,39 +1,37 @@
 import java.util.Scanner;
 
 public class Num10 {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите число: ");
-        int result = readInt(scanner, "");
+        System.out.println("Введите день недели с маленькой буквой:");
+        String x = scanner.nextLine();
+        System.out.println("Результат:");
 
-        for (int i = 2; i <= 5; i++) {
-            System.out.println("Введите число: " + i + ": ");
-            int next = readInt(scanner, "");
-            result = lastNumSum(result,next);
-            System.out.println("Промежуточный результат: " + result);
-        }
-
-        System.out.println("Итого: " + result);
-
+        printDays(x);
         scanner.close();
     }
 
-    public static int lastNumSum(int a, int b) {
-        return (a % 10) + (b % 10);
-    }
-
-    public static int readInt(Scanner scanner, String prompt) {
-        while (true) {
-            System.out.println(prompt);
-            String input = scanner.nextLine();
-
-            try {
-                return Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                System.out.println("Это не целое число, повторите ввод:");
-            } 
+    public static void printDays(String x) {
+        switch (x) {
+            case ("понедельник"):
+                System.out.println("понедельник");
+            case ("вторник"):
+                System.out.println("вторник");
+            case ("среда"):
+                System.out.println("среда");
+            case ("четверг"):
+                System.out.println("четверг");
+            case ("пятница"):
+                System.out.println("пятница");
+            case ("суббота"):
+                System.out.println("суббота");
+            case ("воскресенье"):
+                System.out.println("воскресенье");
+                break;
+            default:
+                System.out.println("Это не день недели");
         }
     }
 }
+
