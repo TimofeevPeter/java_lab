@@ -1,37 +1,44 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Num10 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите целые числа через пробел для создания массива arr:");
+        String input = scanner.nextLine();
+        String[] parts = input.split(" ");
+        int[] arr = new int[parts.length];
 
-        System.out.println("Введите день недели с маленькой буквой:");
-        String x = scanner.nextLine();
-        System.out.println("Результат:");
+        for (int i = 0; i < parts.length; i++) {
+            arr[i] = Integer.parseInt(parts[i]);
+        }
+        int[] result = deleteNegative(arr);
+        System.out.println("Результат: " + Arrays.toString(result));
 
-        printDays(x);
         scanner.close();
     }
 
-    public static void printDays(String x) {
-        switch (x) {
-            case ("понедельник"):
-                System.out.println("понедельник");
-            case ("вторник"):
-                System.out.println("вторник");
-            case ("среда"):
-                System.out.println("среда");
-            case ("четверг"):
-                System.out.println("четверг");
-            case ("пятница"):
-                System.out.println("пятница");
-            case ("суббота"):
-                System.out.println("суббота");
-            case ("воскресенье"):
-                System.out.println("воскресенье");
-                break;
-            default:
-                System.out.println("Это не день недели");
+    public static int[] deleteNegative(int[] arr) {
+        int leng = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= 0) {
+                leng++;
+            }
+
         }
+
+        int[] result = new int[leng];
+        if (leng == 0) {
+            return result;
+        }
+        
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= 0) {
+                result[index] = arr[i];
+                index++;
+            }
+        }
+        return result;
     }
 }
-
