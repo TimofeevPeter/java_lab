@@ -2,26 +2,41 @@ import java.util.Scanner;
 
 public class Num4 {
     public static void main(String[] args) {
-        
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите любое целое число:");
+        int x = readInt(scanner, "Введите любое целое число: ");
+        int y = readInt(scanner, "Введите любое целое положительное число: ");
 
-        String input = scanner.nextLine();
-        int x;
-
-        try {
-            x = Integer.parseInt(input);
-            boolean result = isPositive(x);
-            System.out.println("Результат: " + result);
-        } catch (NumberFormatException e) {
-            System.out.println("Вы ввели не целое число!");
+        while (y < 0) {
+            System.out.print("Степень не может быть отрицательной! Повторите ввод: ");
+            y = readInt(scanner, "");
         }
 
-        scanner.close();
+        int result = pow(x, y);
+        System.out.println("Результат: " + result);
 
+        scanner.close();
     }
 
-    public static boolean isPositive (int x) {
-        return x > 0;
+    public static int readInt(Scanner scanner, String prompt) {
+
+        while (true) {
+            System.out.println(prompt);
+            String input = scanner.nextLine();
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Неверный ввод! Повторите попытку:");
+            }
+        }
+    }
+
+    public static int pow(int x, int y) {
+        int result = 1;
+        for (int i = 1; i <=y ; i++) {
+            result = result * x;
+        }
+
+        return result;
     }
 }

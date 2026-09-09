@@ -1,16 +1,13 @@
 import java.util.Scanner;
 
 public class Num6 {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int x = readInt(scanner, "Введите любое целое число: ");
 
-        int x = readInt(scanner, "Введите первое целое число (x): ");
-        int y = readInt(scanner, "Введите второе целое число (y): ");
-        int z = readInt(scanner, "Введите третье целое число (z): ");
-
-        boolean result = sum3(x, y, z);
+        boolean result = equalNum(x);
         System.out.println("Результат: " + result);
-
         scanner.close();
     }
 
@@ -22,21 +19,23 @@ public class Num6 {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("Неверный ввод! Введите целое число:");
+                System.out.println("Неверный ввод! Повторите попытку");
             }
         }
+        
     }
 
-    public static boolean sum3(int x, int y, int z) {
-        if (x + y == z) {
-            return true;
-        } else if (x + z == y) {
-            return true;
-        } else if (y + z == x) {
-            return true;
-        } else {
-            return false;
+    public static boolean equalNum(int x) {
+        x = Math.abs(x);
+        int standart = x % 10;
+        boolean resualt = true ;
+        while (x > 0) {
+            int predlast = x % 10;
+            if (predlast != standart) {
+                resualt = false;
+            }
+            x = x / 10;
         }
+        return resualt;
     }
-
 }
